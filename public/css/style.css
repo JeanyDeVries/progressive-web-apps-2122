@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&family=Roboto+Serif:wght@500&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: rgb(201, 186, 177);
+    display: flex;
+    flex-direction: column;
+}
+
+p{
+    font-size: 3vh;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+    color:white;
+    text-align: center;
+}
+
+header{
+    position: relative;
+    display: block;
+    padding-top: 20%;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    background-color: rgb(112, 97, 93);
+    margin-bottom: 2%;
+    border-radius: 15%;
+    border: 2px solid white;
+}
+
+h1{
+    font-size: 5vh;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+}
+
+.loadingText{
+    position: fixed;
+    top: 50%;
+    left: 0%;    
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 5vh;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: -50px;
+    z-index: 999999;
+}
+
+.errorText{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;    
+    top: 20vh;
+    font-size: 3vh;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+    color:white;
+    text-align: center;
+}
+
+header input{
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    background-color: rgb(173, 175, 165);
+    width: 30%;
+    height: 1.5vh;
+
+    font-size: 1vh;
+    font-family: system-ui;
+    font-weight: 500;
+
+    box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.7);
+    transition: transform 0.5s cubic-bezier(0.67, -0.33, 0.62, 1.35), box-shadow 0.4s ease;
+}
+
+header input[type=text]:focus {
+    box-shadow: 0px 30px 1em -25px rgba(0, 0, 0, 0.4);
+    transform: scale(1.5, 1.5);
+  }
+
+.displayItems h2{
+    font-size: 1.5em;
+    font-family: system-ui;
+    font-weight: 400;
+    height: 80px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+section{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.displayItems, .displaySearchResults{
+    display: grid;
+    grid-template-columns: 35vw 35vw;
+    grid-gap: 5vw;
+    align-items: start;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.displayItems button, .displaySearchResults button{
+    list-style-type: none;
+    margin-bottom: 1vh;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px 0px rgb(187 187 187);
+    opacity: 0.6;
+    transition: all 0.3s ease-in;
+    background-color: white;
+}
+
+.displayItems button:hover, .displaySearchResults button:hover{
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 5;
+}
+
+.displayItems img, .displaySearchResults img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.containerLoad{
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    z-index: -5;
+}
+
+.lds-dual-ring {
+    display: flex;
+    left: 50%;
+    top: 50%;
+    justify-self: center;
+    content: "";
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+    z-index: 99999;
+}
+
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  
+.artPiece {
+    display: none; 
+    position: fixed;
+    z-index: 10; 
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  /* Art piece content */
+  .artPiece-content {
+    z-index: 10; 
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    height: 60%;
+    border-radius: 5%;
+  }
+
+  .artPiece-content img{
+      position: relative;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 0 auto;
+  }
+
+  .artPiece-content h2{
+    font-size: 5vh;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 0.4%;
+    margin-top: 1%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+}
+
+.artPiece-content h3{
+    font-size: 3.5vh;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 0.4%;
+    margin-top: 1%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+}
+
+.artPiece-content p{
+    font-size: 2vh;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 0.4%;
+    margin-top: 1%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+@media screen and (min-device-width : 1000px){
+    h1{
+        font-size: 5vw;
+    }
+
+    header input{
+        height: 1.5vw;
+        font-size: 1vw;
+    }
+}
+
+@media screen and (max-device-width : 400px){
+    h1{
+        font-size: 3vh;
+    }
+
+    header input{
+        height: 1.5vh; 
+        font-size: 1vh;
+    }
+}
