@@ -5,7 +5,7 @@
 - [Server setup](#Server)
 
 ## Description
-To improve the single web page we have made for Rijksmuseum I build a server side application. It was a client side at first, but this comes with some counterpoints. 
+To improve the single web page we have made for Rijksmuseum I build a server side application. It was a client side at first, but this comes with some counterpoints. The loading of the page takes some time plus if you have any javascript errors it can be fatal. This will be countered in server side rendering. 
   
 ## Server setup <a name="Server">
 To begin the trandformation from client side to server side, I first needed to install some packages. The first thing needed was Node.js, thankfully I used this before so I already had it installed. Secondly I needed express.js. I installed it using the npm package manager via the terminal. The packagemanager then looks like this:
