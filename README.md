@@ -3,6 +3,8 @@
 ## Table of Contents
 - [Description](#description)
 - [Server setup](#Server)
+- [Tooling](#Tooling)
+
 
 ## Description
 To improve the single web page we have made for Rijksmuseum I build a server side application. It was a client side at first, but this comes with some counterpoints. The loading of the page takes some time plus if you have any javascript errors it can be fatal. This will be countered in server side rendering. 
@@ -53,3 +55,12 @@ The second thing to do was setting the server up with the packages we have downl
 app.listen(port);
   ```
 
+## Tooling <a name="Tooling">
+I set up tooling for nodemon in my packages.json. I wanted to start the project with nodemon. So in my script I said in the start, nodemon app.js. This way when I type npm start in my terminal I start the script app.js using nodemon. 
+
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  }
+```
