@@ -26,4 +26,5 @@ export function renderHTML(collection){
 
     loadingText.textContent = "";
     changeState("#paintings")
+    
 }

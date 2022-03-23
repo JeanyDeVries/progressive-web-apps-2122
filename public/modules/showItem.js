@@ -1,4 +1,4 @@
-import { fetchData } from "./fetchData.js";
+//import { fetchData } from "./fetchData.js";
 import { dataMuseum } from "./fetchData.js";
 
 export function showItem(id, object){

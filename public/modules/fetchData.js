@@ -5,6 +5,7 @@ import { renderSearchItems } from "./renderSearchItems.js";
 
 export let dataMuseum = null;
 
+/*
 export function fetchData(url, state){
     //Data is not there yet, so loading
     checkState("loading");
@@ -38,3 +39,4 @@ export function fetchData(url, state){
             console.log(error);
         });
 }
+*/

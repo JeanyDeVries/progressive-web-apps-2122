@@ -1,4 +1,4 @@
-import { fetchData } from "./fetchData.js";
+//import { fetchData } from "./fetchData.js";
 import { addSearchListeners } from "./search.js";
 
 const api_url = "https://www.rijksmuseum.nl/api/nl/collection?key=ixmhN4my&ps=20&imgonly=true"
@@ -19,6 +19,9 @@ addSearchListeners();
 window.addEventListener("offline", function() {
     checkState("error");
   });
+
+location.hash = "paintings";
+
 
 //Check which state it is, then run the code specific for that state
 export function checkState(currentState){

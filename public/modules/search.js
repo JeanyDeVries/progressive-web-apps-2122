@@ -1,4 +1,4 @@
-import { fetchData } from "./fetchData.js";
+//import { fetchData } from "./fetchData.js";
 import { deleteSearchResults, showArtpieces } from "./main.js";
 import { checkState } from "./main.js";
 
