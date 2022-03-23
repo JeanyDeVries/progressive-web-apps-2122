@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/public/views'));
 
