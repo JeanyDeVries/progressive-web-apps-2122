@@ -2,9 +2,12 @@
 
 
 <% data.forEach(function(painting) { %>
-    <a href = "/painting/<%= painting.objectNumber %>" class = paintingWrapper>
-        <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
-    </a>
+    <div class = "paintingWrapper">
+        <a href = "/painting/<%= painting.objectNumber %>">
+            <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
+            <h2><%- painting.title %></h2>
+        </a>
+    </div>
 <% }) %>
 
 <%- include('./partials/footer') %>

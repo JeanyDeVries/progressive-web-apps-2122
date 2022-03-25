@@ -1,8 +1,65 @@
-body{
-    background-color: rgb(43, 39, 39);
+:root{
+    --gray: rgb(32, 32, 32);
+    --lightGray: rgb(145, 145, 145);
+    --darkBlue: rgb(75, 86, 102);
 }
 
+*{
+    margin: 0 auto;
+}
+
+body{
+    background-color: var(--gray);
+}
+
+nav{
+    height: 20vh;
+    margin: auto;
+    background-color: var(--darkBlue);
+    border-bottom: 3px solid #e8eddf;
+}
+
+nav h1{
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 5em;
+    font-weight: 800;
+    text-align: center;
+}
+
+nav input{
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 10px;
+    height: 2vh;
+    margin-top: 2vh;
+    border: 3px solid rgb(250, 250, 250);
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+  }
+
 .paintingWrapper{
-    
+    margin-top: 50px;;
+    width: 80%;
+
+    display: flex;
+}
+
+.paintingWrapper a{
+    text-decoration: none;
+}
+
+.paintingWrapper img{
+
+}
+
+.paintingWrapper h2{
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3em;
+    font-weight: 800;
+    text-align: center;
 }
 
