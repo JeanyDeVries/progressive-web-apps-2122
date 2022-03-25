@@ -1,7 +1,10 @@
 <%- include('./partials/head') %>
 
+
 <% data.forEach(function(painting) { %>
-    <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
+    <a href = "/painting/<%= painting.objectNumber %>" class = paintingWrapper>
+        <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
+    </a>
 <% }) %>
 
 <%- include('./partials/footer') %>
