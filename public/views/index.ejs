@@ -1,54 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script type = module src = "modules/main.js"></script>
-    <title>Rijksmuseum</title>
-</head>
-<body>
-    <nav>
-        <header>
-            <h1>Rijksmuseum</h1>
-            <input id = "searchBar" type = "text" placeholder="Search for artists or paintings">
-        </header>
+<%- include('./partials/head') %>
 
-        <div class = "menu"></div>
-    </nav>
+<% data.forEach(function(painting) { %>
+    <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
+<% }) %>
 
-    <section>
-        <p></p> <!--Emtpy state-->
-    </section>
-
-    <section class = "displayItems">
-        <ul>
- 
-        </ul>
-    </section>
-
-    <section class = "displaySearchResults">
-        <ul>
- 
-        </ul>
-    </section>
-
-    <div class = "containerLoad">
-        <div id = "loadElement" class="lds-dual-ring"></div>        
-    </div>
-    <p id = "loadingText" class = "loadingText"></p>
-    <p id = "errorText" class = "errorText"></p>
-    <p id = "noResultsText" class = "noResultsText"></p>
-
-
-    <!-- The Modal -->
-    <div id="artPiece" class="artPiece">
-        <div id = "artPiece-content" class="artPiece-content">
-            <span class="close">&times;</span>
-            <div id = "content"></div>
-        </div>
-    </div>
-
-    </body>
-</html>
+<%- include('./partials/footer') %>
