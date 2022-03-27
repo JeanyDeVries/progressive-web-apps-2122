@@ -8,6 +8,14 @@
     margin: 0 auto;
 }
 
+a{
+    text-decoration: none;
+}
+
+h1:hover{
+    text-decoration: underline;
+}
+
 body{
     background-color: var(--gray);
 }
@@ -55,10 +63,6 @@ input[type=text]:focus {
 .paintingWrapper img:hover{
     opacity: 1;
     border: 2px solid white;
-}
-
-.paintingWrapper a{
-    text-decoration: none;
 }
 
 .paintingWrapper img{
