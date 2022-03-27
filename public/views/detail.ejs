@@ -1,5 +1,14 @@
 <%- include('./partials/head') %>
 
-<img src= <%-data.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- data.title %>>
+<div class = 'detail'>
+    <img  src= <%-data.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- data.title %>>
+    <div>
+        <h2><%-data.title%></h2>
+        <h3><%-data.dating.presentingDate%></h3>
+        <p><%-data.description%></p>
+    </div>
+</div>
+
+
 
 <%- include('./partials/footer') %>
