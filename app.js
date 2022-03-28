@@ -50,10 +50,6 @@ app.get('/search', (req, res) => {
 
 app.listen(port);
 
-//Use later when everything works
-async function fetchJson(url) {
-  return await fetch(url)
-    .then((response) => response.json())
-    .then((body) => body.data)
-    .catch((error) => error)
+function checkServiceWorker(){
+  
 }
