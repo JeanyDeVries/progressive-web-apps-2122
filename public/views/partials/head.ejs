@@ -10,6 +10,8 @@
 <body>
   <nav>
       <a href = "/"><h1>Rijksmuseum</h1></a>
-      <input id = "searchBar" type = "text" placeholder="Search for artists or paintings">
+      <form method="get" action="/search" class="search-form" data-search-form>
+        <input type="search" id="searchBar" name="query" placeholder="Search for artists or paintings" data-search-input/>
+    </form>
   </nav>
   <main>
