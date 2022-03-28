@@ -1,19 +1,15 @@
-const PRECACHE = 'precache-v1';
-const RUNTIME = 'runtime';
-
-// A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
-  'index.ejs',
-  './', 
-  'stylesheet.css',
-  '../../css/stylesheet.css',
+const CORE_CACHE_NAME = 'core-cache'; 
+const CORE_ASSETS = [
+  '/views/partials/footer.ejs',
+  '/views/partials/head.ejs',
+  '/views/index.ejs',
+  '/css/stylesheet.css',
 ];
 
-// The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
-      .then(self.skipWaiting())
-  );
-});
+  caches.open(CORE_CACHE_NAME)
+  .then(cache => cache.addAll(CORE_ASSETS))
+  .then(() => self.skipWaiting())
+  )
+ });
