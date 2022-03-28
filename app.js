@@ -36,7 +36,6 @@ app.get('/painting/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  let searchQuery = req.query.query.split(' ').join('%20');
   fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}q=${req.query.query}`)
       .then(async response => {
          const search = await response.json() 
