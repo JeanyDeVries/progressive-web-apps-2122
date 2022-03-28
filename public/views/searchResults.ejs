@@ -4,7 +4,9 @@
 
     <% data.forEach(function(painting) { %>
             <a href = "/painting/<%= painting.objectNumber %>">
-                <img src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >	
+                <%if(painting.webImage){ %>
+                    <img src= <%- painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >
+                    <% } %>
                 <h2><%- painting.title %></h2>
             </a>
     <% }) %>
