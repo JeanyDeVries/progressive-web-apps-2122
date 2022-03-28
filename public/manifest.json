@@ -8,12 +8,12 @@
     "start_url": "../app.js",
     "icons": [
         {
-        "src": "/public/img/RijksmuseumIcon.png",
-        "sizes": "72x72",
+        "src": "/img/RijksmuseumIcon.png",
+        "sizes": "512x512",
         "type": "image/png"
         },
         {
-        "src": "/public/img/RijksmuseumIcon.png",
+        "src": "/img/RijksmuseumIcon.png",
         "sizes": "96x96",
         "type": "image/png"
        }
