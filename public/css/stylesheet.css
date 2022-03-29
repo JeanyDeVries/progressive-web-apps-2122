@@ -30,7 +30,7 @@ nav{
 nav h1{
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 4em;
+    font-size: 3em;
     font-weight: 800;
     text-align: center;
 }
@@ -54,14 +54,21 @@ input[type=text]:focus {
     margin: 0 auto;
     justify-content: center;
     position: relative;
-    text-align: center;
-}
 
-.paintingWrapper a{
     display: flex;
     flex: 1 1 40%;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    margin-left: 200px;
+    margin-right: 200px;
+
+    text-align: center;
+}
+
+.paintingWrapper a{
+    min-width: 200px;
+    max-width: 400px;
 }
 
 .paintingWrapper img:hover{
@@ -76,13 +83,12 @@ input[type=text]:focus {
     object-fit: cover;
     border-radius: 10px;
     opacity: 0.8;
-    min-width: 200px;
 }
 
 .paintingWrapper h2{
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 800;
     text-align: center;
     min-width: 200px;
