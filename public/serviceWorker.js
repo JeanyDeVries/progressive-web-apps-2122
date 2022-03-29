@@ -1,10 +1,8 @@
-const CORE_CACHE_VERSION = 'v2'
+const CORE_CACHE_VERSION = 'v4'
 const CORE_ASSETS = [
-  '/views/partials/footer.ejs',
-  '/views/partials/head.ejs',
   '/js/main.js',
-  '/views/offline.ejs',
   '/css/stylesheet.css',
+  `/offline`
 ];
 
 //precaching
@@ -38,7 +36,7 @@ self.addEventListener('fetch', event => {
             .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
             .catch(e => {
                 return caches.open(CORE_CACHE_VERSION)
-                .then(cache => cache.match('/offline.ejs'))
+                .then(cache => cache.match('/offline'))
             }))
     }
 });

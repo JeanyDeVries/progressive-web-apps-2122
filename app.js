@@ -44,7 +44,16 @@ app.get('/search', (req, res) => {
               data: search.artObjects
         })
       })
-      .catch(err => res.send(err))
+      .catch(err =>{
+        res.send(err);
+      })
 })
+
+app.get('/offline', (req, res) => {
+  res.render('offline',{
+    pageTitle: `Offline`
+  });
+})
+
 
 app.listen(port);
