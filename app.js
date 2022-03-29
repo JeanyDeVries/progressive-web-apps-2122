@@ -39,7 +39,6 @@ app.get('/search', (req, res) => {
   fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}q=${req.query.query}`)
       .then(async response => {
          const search = await response.json() 
-         console.log(search)
          res.render('searchResults', {
               pageTitle: `Kunstwerk: ${req.query.query}`,
               data: search.artObjects
