@@ -18,6 +18,7 @@ h1:hover{
 
 body{
     background-color: var(--gray);
+    position: absolute;
 }
 
 nav{
