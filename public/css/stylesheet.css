@@ -101,6 +101,12 @@ input[type=text]:focus {
     grid-template-columns: min-content 1fr;
 }
 
+.detail img{
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+
 .detail h2{
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

@@ -1,7 +1,11 @@
 <%- include('./partials/head') %>
 
 <div class = 'detail'>
-    <img  src= <%-data.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- data.title %>>
+    <%if(data.webImage){ %>
+        <img src= <%- data.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- data.title %> >
+    <% }else{ %>
+        <img src= <%- "/img/placeholder.png" %> alt= <%- data.title %> >
+    <% } %>    
     <div>
         <h2><%-data.title%></h2>
         <h3><%-data.dating.presentingDate%></h3>
