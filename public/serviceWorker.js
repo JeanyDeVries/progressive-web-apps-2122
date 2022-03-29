@@ -1,4 +1,4 @@
-const CORE_CACHE_VERSION = 'v6'
+const CORE_CACHE_VERSION = 'v7'
 const CORE_ASSETS = [
   '/js/main.js',
   '/css/stylesheet.css',
