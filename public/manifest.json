@@ -1,8 +1,8 @@
 {
-    "name": "Websap! Chat on the web!",
-    "short_name": "Websap!",
-    "theme_color": "#1a4e57",
-    "background_color": "#1a4e57",
+    "name": "Rijksmuseum",
+    "short_name": "Rijksmuseum!",
+    "theme_color": "#4B5666",
+    "background_color": "#4B5666",
     "display": "standalone",
     "orientation": "portrait",
     "start_url": "../app.js",
