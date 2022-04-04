@@ -9,19 +9,18 @@ const CORE_ASSETS = [
 self.addEventListener('install', event => {
     event.waitUntil(
     caches.open(CORE_CACHE_VERSION)
+    //Add the important assets to the cache
     .then(cache => cache.addAll(CORE_ASSETS))
     .then(() => self.skipWaiting()))
  });
 
 self.addEventListener('activate', () =>{
-    console.log('Activating service worker')
     return self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {
     if (isCoreGetRequest(event.request)) 
     {
-        console.log('Core get request: ', event.request.url);
         // cache only strategy
         event.respondWith(
         caches.open(CORE_CACHE_VERSION)
@@ -29,6 +28,7 @@ self.addEventListener('fetch', event => {
     } 
     else if (isHtmlGetRequest(event.request)) 
     {
+        //Delete cache html pages when the length is bigger than 10
         event.respondWith(
             caches.open('html-cache')
             .then(cache => {
@@ -43,10 +43,11 @@ self.addEventListener('fetch', event => {
               )   
               return cache.match(event.request.url) 
             })
+            //Cache the html page
             .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
+            // generic fallback to a offline page
             .catch(e => {
                 return caches.open(CORE_CACHE_VERSION)
-                // generic fallback
                 .then(cache => cache.match('/offline'))
             }))
     }

@@ -6,9 +6,11 @@ const api_key = "ixmhN4my&"
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
 
+//Let the app listen to ejs views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/public/views'));
 
+//Set a public path, so /public is not needed anywhere
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
@@ -24,6 +26,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/painting/:id', (req, res) => {
+  //Use the id in the request for the fetch
   fetch(`https://www.rijksmuseum.nl/api/nl/collection/${req.params.id}?key=${api_key}&imgonly=true`)
       .then(async response => {
          const detail = await response.json()
@@ -36,6 +39,7 @@ app.get('/painting/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
+  //Use the query to get the search input
   fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}q=${req.query.query}`)
       .then(async response => {
          const search = await response.json() 
