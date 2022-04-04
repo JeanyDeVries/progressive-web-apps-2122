@@ -29,13 +29,24 @@ self.addEventListener('fetch', event => {
     } 
     else if (isHtmlGetRequest(event.request)) 
     {
-        // generic fallback
         event.respondWith(
             caches.open('html-cache')
-            .then(cache => cache.match(event.request.url))
+            .then(cache => {
+              event.waitUntil(
+                cache.keys().then(function(keys) {
+                  keys.forEach((request, index) =>{
+                    if(index >= 10){
+                      cache.delete(request);
+                    }
+                  });
+                })
+              )   
+              return cache.match(event.request.url) 
+            })
             .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
             .catch(e => {
                 return caches.open(CORE_CACHE_VERSION)
+                // generic fallback
                 .then(cache => cache.match('/offline'))
             }))
     }
