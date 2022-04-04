@@ -4,11 +4,12 @@
 - [Description](#description)
 - [Install Project](#Install)
 - [Server setup](#Server)
+- [Server-worker](#Server-worker)
 - [Tooling](#Tooling)
 - [Issues](#Issues)
 
 ## Description
-To improve the single web page we have made for Rijksmuseum I build a server side application. It was a client side at first, but this comes with some counterpoints. The loading of the page takes some time plus if you have any javascript errors it can be fatal. This will be countered in server side rendering. 
+To improve the single web page we have made for Rijksmuseum I build a server side application. It was a client side at first, but this comes with some counterpoints. The loading of the page takes some time plus if you have any javascript errors it can be fatal. This will be countered in server side rendering. I explained this in this readme on how I made it work. 
 
 ## Install Project <a name="Install">
 ### Clone this repo
@@ -46,34 +47,104 @@ To begin the trandformation from client side to server side, I first needed to i
   
   (I installed nodemon as well just so it refreshes the page automatically)
   
-The second thing to do was setting the server up with the packages we have downloaded. A mistake I made was only using node.js for setting up the server. I realised  that I could set up my html very fast, but the css was a bit of a problem. I then asked for help and they said I needed to use express as well. This eventually made things a lot easier. But how did I get it to work? Well I first set up an app with the express method and made it listen to the port I wanted (you also need to import express using the require method). I then wanted to render the index.html. But after some searching I needed to translate the html to ejs. To find the ejs file I setset the ejs to views with a pathname where it could find it. For the other files I said to find it in the public folder, where I transferred my files in. This is the code below:
+The second thing to do was setting the server up with the packages we have downloaded. A mistake I made was only using node.js for setting up the server. I realised  that I could set up my html very fast, but the css was a bit of a problem. I then asked for help and they said I needed to use express as well. This eventually made things a lot easier. But how did I get it to work? Well I first set up an app with the express method and made it listen to the port I wanted (you also need to import express using the require method). I then wanted to render the index.html. But after some searching I needed to translate the html to ejs. To find the ejs file I set the ejs to views with a pathname where it could find it. For the other files I said to find it in the public folder, where I transferred my files in. This is the code below:
   
   
   ```
-  const express = require('express');
-  const path = require('path');
-  const app = express();
-  const port = 3000;
-
-  app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, '/public/views'));
-
-  app.use(express.static(path.join(__dirname, 'public')));
-
-  app.get('/', (req, res) =>{
-    res.render("index");
+  app.get('/', function (req, res) {
+    fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}&ps=20&imgonly=true`)
+      .then(async response => {
+        const artWorks = await response.json()
+        res.render('index', {
+            pageTitle: 'Home page', 
+            data: artWorks.artObjects
+        })
+      })
+      .catch(err => res.send(err))
   })
 
-app.listen(port);
+  app.listen(port);
   ```
+  
+  
+The server now fetches the data when the hashtag is emty, which in this case is my home page. Then I use the response to retrieve my data and render that variable in my ejs. 
+   
+## Server-worker <a name="Server-worker">
+Now that everything was running on the server, it needed a sort of backup. What if the page went offline. The user still needs to have some visuals or have some pages in a storage. That's where the service worker is for. 
+
+To add the service worker to our project I made a main.js script. It checks if it is supported, if so register the service worker on load. Then check if it has any differences, so yes update the service worker. Now when I refresh the page, the service worker is added. But it is empty so we need to add some code to it!
+
+```
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/serviceWorker.js')
+      .then(function(registration) {
+        return registration.update();
+        })
+      });
+   }
+```
+  
+A service worker has multiple functions, like install, fetch etc. 
+We first needed the function "install" to install the service worker and precache our main elements of our site. 
+When we are installing the service worker we also want to add the assets to it in the cache storage. I made an array with the essentails I wanted. It then adds it all to the cache during the install, see code below. 
+  
+```
+  const CORE_CACHE_VERSION = 'v8'
+  const CORE_ASSETS = [
+    '/js/main.js',
+    '/css/stylesheet.css',
+    `/offline`
+  ];
+
+  //precaching
+  self.addEventListener('install', event => {
+      event.waitUntil(
+      caches.open(CORE_CACHE_VERSION)
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting()))
+   });
+```
+  
+Now our offline page is running with our css, but we also want to see the pages. This is where the fetch function comes in.
+  
+On our site we fetch for every new site we go to, because we load new data. This can take a while and is bad for our performance plus it will not work if we are offline. 
+  
+In the fetch listener of our service worker we simply check if is one of our core elements or an html page. If it is an html page we open up a new cache called html-cache where I store all the loaded html pages. Then if the page is not yet in the cache we add the newly loaded page to it. And if for some reason you are offline and you check a site that is not in the cache yet, you will go to the offline page. 
+  
+```
+  self.addEventListener('fetch', event => {
+    if (isCoreGetRequest(event.request)) 
+    {
+        console.log('Core get request: ', event.request.url);
+        // cache only strategy
+        event.respondWith(
+        caches.open(CORE_CACHE_VERSION)
+        .then(cache => cache.match(event.request.url)))
+    } 
+    else if (isHtmlGetRequest(event.request)) 
+    {
+        // generic fallback
+        event.respondWith(
+            caches.open('html-cache')
+            .then(cache => cache.match(event.request.url))
+            .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
+            .catch(e => {
+                return caches.open(CORE_CACHE_VERSION)
+                .then(cache => cache.match('/offline'))
+            }))
+    }
+```
+
 
 ## Tooling <a name="Tooling">
 I set up tooling for nodemon in my packages.json. I wanted to start the project with nodemon. So in my script I said in the start, nodemon app.js. This way when I type npm start in my terminal I start the script app.js using nodemon. 
-
+  
 ```
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "npx nodemon app.js"
   }
 ```
   
