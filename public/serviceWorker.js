@@ -1,4 +1,4 @@
-const CORE_CACHE_VERSION = 'v10'
+const CORE_CACHE_VERSION = 'v11'
 const CORE_ASSETS = [
   '/js/main.js',
   '/css/stylesheet.css',
@@ -35,7 +35,7 @@ self.addEventListener('fetch', event => {
               event.waitUntil(
                 cache.keys().then(function(keys) {
                   keys.forEach((request, index) =>{
-                    if(index >= 20){
+                    if(index >= 40){
                       cache.delete(request);
                     }
                   });

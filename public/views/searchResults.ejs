@@ -5,7 +5,16 @@
     <% data.forEach(function(painting) { %>
             <a href = "/painting/<%= painting.objectNumber %>">
                 <%if(painting.webImage){ %>
-                    <img src= <%- painting.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- painting.title %> >
+                    <img 
+                        srcset= <%-painting.webImage.url.slice(0, -3) + "=s200"%>  50w,
+                            <%-painting.webImage.url.slice(0, -3) + "=s400"%>  100w,  
+                            <%-painting.webImage.url.slice(0, -3) + "=s600"%>  200w, 
+                        sizes="(max-width: 710px) 120px,
+                            (max-width: 991px) 193px,
+                            278px"
+                        src= <%-painting.webImage.url.slice(0, -3) + "=s1000" %> 
+                        alt= <%- painting.title %>                           > 
+                >
                 <% }else{ %>
                     <img src= <%- "/img/placeholder.png" %> alt= <%- painting.title %> >
                 <% } %>

@@ -2,7 +2,16 @@
 
 <div class = 'detail'>
     <%if(data.webImage){ %>
-        <img src= <%- data.webImage.url.slice(0, -3) + "=s1000" %> alt= <%- data.title %> >
+        <img 
+            srcset= <%-data.webImage.url.slice(0, -3) + "=s200"%>  50w,
+                <%-data.webImage.url.slice(0, -3) + "=s400"%>  100w,  
+                <%-data.webImage.url.slice(0, -3) + "=s600"%>  200w, 
+            sizes="(max-width: 710px) 120px,
+                (max-width: 991px) 193px,
+                278px"
+            src= <%-data.webImage.url.slice(0, -3) + "=s1000" %> 
+            alt= <%- data.title %>         
+        >
     <% }else{ %>
         <img src= <%- "/img/placeholder.png" %> alt= <%- data.title %> >
     <% } %>    
