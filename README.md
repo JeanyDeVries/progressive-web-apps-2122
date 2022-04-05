@@ -5,7 +5,8 @@
 - [Install Project](#Install)
 - [Server setup](#Server)
 - [Server-worker](#Server-worker)
-- [Optimization](#Optimization)
+- [Activity Diagram](#description)
+- [Optimization](#Diagram)
 - [Tooling](#Tooling)
 - [Issues](#Issues)
 
@@ -143,6 +144,9 @@ In the fetch listener of our service worker we simply check if is one of our cor
             }))
     }
 ```
+  
+## Activity Diagram <a name="Diagram">
+![image](https://user-images.githubusercontent.com/44086608/161763795-fad8a552-2ed7-41df-990d-c171a5fe73ca.png)
   
 ## Optimilization  <a name="Optimization">
 Now that everything is working, we need to optimize. We want the user to have a nice experience with our site. We don't want our users waiting for our site to load. To do that I made some optimilizatations:
