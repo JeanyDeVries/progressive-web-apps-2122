@@ -35,7 +35,7 @@ self.addEventListener('fetch', event => {
               event.waitUntil(
                 cache.keys().then(function(keys) {
                   keys.forEach((request, index) =>{
-                    if(index >= 10){
+                    if(index >= 20){
                       cache.delete(request);
                     }
                   });

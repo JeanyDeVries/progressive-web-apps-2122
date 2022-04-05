@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+var compression = require('compression')
+
 const app = express();
 const port = 1337;
 const api_key = "ixmhN4my&"
@@ -12,6 +14,8 @@ app.set('views', path.join(__dirname, '/public/views'));
 
 //Set a public path, so /public is not needed anywhere
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression())
+
 
 app.get('/', function (req, res) {
   fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}&ps=20&imgonly=true`)
