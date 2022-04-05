@@ -3,7 +3,7 @@ const path = require('path');
 var compression = require('compression')
 
 const app = express();
-const port = 1337;
+const port = 1337 || process.env.PORT;
 const api_key = "ixmhN4my&"
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
