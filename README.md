@@ -5,6 +5,7 @@
 - [Install Project](#Install)
 - [Server setup](#Server)
 - [Server-worker](#Server-worker)
+- [Optimization](#Optimization)
 - [Tooling](#Tooling)
 - [Issues](#Issues)
 
@@ -21,6 +22,13 @@ To improve the single web page we have made for Rijksmuseum I build a server sid
 ```
 $ cd web-app-from-scratch-2122
 ```
+  
+When you have cloned the repo, it will not work yet. We need to install some packages:
+  1. Install node.js
+  2. Write in the terminal npm install express
+  3. Also install dotenv, nodefetch, nodemon and ejs this way.
+  4. To start the server, write in the terminal npm start.
+  
   
 ## Server setup <a name="Server">
 To begin the trandformation from client side to server side, I first needed to install some packages. The first thing needed was Node.js, thankfully I used this before so I already had it installed. Secondly I needed express.js. I installed it using the npm package manager via the terminal. The packagemanager then looks like this:
@@ -135,6 +143,17 @@ In the fetch listener of our service worker we simply check if is one of our cor
             }))
     }
 ```
+  
+## Optimilization  <a name="Optimization">
+Now that everything is working, we need to optimize. We want the user to have a nice experience with our site. We don't want our users waiting for our site to load. To do that I made some optimilizatations:
+1. I used the compression package to compress some images, so they will load faster.
+    ```app.use(compression())```
+2. I wanted the javascript to load after all the html elements were loaded, so that the user saw all the visuals from the site. I did that by writing defer after the       script. ```<script type="module" src="/js/main.js" defer></script>```
+3. The third thing I did was removing some items from the cache storage. I didn't want to overflow the cache storage with old html caches. So I set a limit to 40 and if it went over the limit it will delete the last item. Sadly new items are being added on the last index, and the last index will be deleted when it overflows the cache. I need to reorder the cache storage if I want to make it work more perfectly. 
+
+After all the optimizing, this was the result: 
+  
+![image](https://user-images.githubusercontent.com/44086608/161755517-13b1e658-d32b-45d9-b2ce-7918fef2421d.png)
 
 
 ## Tooling <a name="Tooling">
