@@ -32,7 +32,7 @@ When you have cloned the repo, it will not work yet. We need to install some pac
   
   
 ## Server setup <a name="Server">
-To begin the trandformation from client side to server side, I first needed to install some packages. The first thing needed was Node.js, thankfully I used this before so I already had it installed. Secondly I needed express.js. I installed it using the npm package manager via the terminal. The packagemanager then looks like this:
+To begin the trandformation from client side to server side, I first needed to install some packages. The first thing needed was Node.js, thankfully I used this before so I already had it installed. Secondly I needed express.js and ejs. I installed it using the npm package manager via the terminal. The packagemanager then looks like this:
   
   ```
     "name": "myapp",
@@ -56,7 +56,7 @@ To begin the trandformation from client side to server side, I first needed to i
   
   (I installed nodemon as well just so it refreshes the page automatically)
   
-The second thing to do was setting the server up with the packages we have downloaded. A mistake I made was only using node.js for setting up the server. I realised  that I could set up my html very fast, but the css was a bit of a problem. I then asked for help and they said I needed to use express as well. This eventually made things a lot easier. But how did I get it to work? Well I first set up an app with the express method and made it listen to the port I wanted (you also need to import express using the require method). I then wanted to render the index.html. But after some searching I needed to translate the html to ejs. To find the ejs file I set the ejs to views with a pathname where it could find it. For the other files I said to find it in the public folder, where I transferred my files in. This is the code below:
+The second thing to do was setting the server up with the packages we have downloaded. A mistake I made was only using node.js for setting up the server. I realised  that I could set up my html very fast, but the css was a bit of a problem. I then asked for help and they said I needed to use express as well. This eventually made things a lot easier. But how did I get it to work? Well I first set up an app with the express method and made it listen to the port I wanted (you also need to import express using the require method). I then wanted to render the index.html. But after some searching I needed to translate the html to ejs. This made the use of the data a lot easier, because javascript can be added to the html elements. To find the ejs file I set the ejs to views with a pathname where it could find it. For the other files I said to find it in the public folder, where I transferred my files in. This is the code below:
   
   
   ```
@@ -76,7 +76,12 @@ The second thing to do was setting the server up with the packages we have downl
   ```
   
   
-The server now fetches the data when the hashtag is emty, which in this case is my home page. Then I use the response to retrieve my data and render that variable in my ejs. 
+The server now fetches the data when the hashtag is emty, which in this case is my home page. Then I use the response to retrieve my data and render that variable in my ejs. I did this for all my pages. A nice thing with fetching the with the app, is that it can read an id in the hashtag url using :id. This made the detail page easier cause I could just grab the id from the request parameters, instead of having to give the id through javascript as I did before.
+  
+```
+  app.get('/painting/:id', (req, res) => {
+      fetch(`https://www.rijksmuseum.nl/api/nl/collection/${req.params.id}?key=${api_key}&imgonly=true`)
+```
    
 ## Server-worker <a name="Server-worker">
 Now that everything was running on the server, it needed a sort of backup. What if the page went offline. The user still needs to have some visuals or have some pages in a storage. That's where the service worker is for. 
