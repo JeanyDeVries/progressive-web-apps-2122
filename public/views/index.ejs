@@ -4,6 +4,7 @@
 
     <% data.forEach(function(painting) { %>
             <a href = "/painting/<%= painting.objectNumber %>">
+                <!--Slice the images to get other resolutions-->
                 <img 
                     srcset= <%-painting.webImage.url.slice(0, -3) + "=s200"%>  50w,
                         <%-painting.webImage.url.slice(0, -3) + "=s400"%>  100w,  

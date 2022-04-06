@@ -1,4 +1,4 @@
-const CORE_CACHE_VERSION = 'v11'
+const CORE_CACHE_VERSION = 'v11' //Use different versions to see changes in html files or css
 const CORE_ASSETS = [
   '/js/main.js',
   '/css/stylesheet.css',
@@ -43,13 +43,13 @@ self.addEventListener('fetch', event => {
               )   
               return cache.match(event.request.url) 
             })
-            //Cache the html page
-            .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
-            // generic fallback to a offline page
-            .catch(e => {
-                return caches.open(CORE_CACHE_VERSION)
-                .then(cache => cache.match('/offline'))
-            }))
+        //Cache the html page
+        .then(response => response ? response : fetchAndCache(event.request, 'html-cache'))
+        // generic fallback to a offline page
+        .catch(e => {
+            return caches.open(CORE_CACHE_VERSION)
+            .then(cache => cache.match('/offline'))
+        }))
     }
 });
 
